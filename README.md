@@ -2,8 +2,7 @@
 
 把自己的日文錯題整理成可以繼續擴充的學習網站。這份作業的核心是 **AGENTS.md + 結構化內容 + 共用頁面**：之後加入新題目時，AI 依同一套規則整理，就能自動產生索引、解析頁與複習內容。
 
-- 網頁成果：使用 Sites 發布；公開狀態以專案交付時確認的權限為準。
-- GitHub Pages 備用網址（尚未啟用）：https://ruasu6.github.io/hw9/
+- GitHub Pages ：https://ruasu6.github.io/hw9/
 - 專案規則：[AGENTS.md](AGENTS.md)
 - 新題格式：[docs/NOTE_TEMPLATE.json](docs/NOTE_TEMPLATE.json)
 - 錯題資料：[content/notes.json](content/notes.json)
@@ -78,13 +77,3 @@ npm run build
 一般本機電腦可用靜態伺服器瀏覽 `dist/`，例如 `python3 -m http.server 8000 --directory dist`，再開啟 http://localhost:8000 。不要直接以 `file://` 開啟，因為瀏覽器會限制 JSON 的載入。受管理的 Cloud 環境應使用其內建預覽工具。
 
 `check` 會驗證唯一 ID、必填內容、狀態、四個選項與答案範圍。修改互動時另需檢查搜尋、篩選、詳細頁、練習回饋與進度保存。此開發環境缺少 Sites 的瀏覽器預覽工具，未進行實際瀏覽器視覺驗證；資料檢查、JavaScript 語法與線上 HTTP 資源可獨立驗證。
-
-## GitHub Pages
-
-目前 GitHub 連線可推送程式碼，但啟用 Pages 的 API 回傳 403，因此改用 Sites 發布。若要改用 GitHub Pages，由儲存庫管理者在 Settings → Pages → Source 選擇 **GitHub Actions**，再到 Actions 手動執行 `Deploy study notes to GitHub Pages`。若希望 main 更新時自動發布，可在 workflow 加回 `push: {branches: [main]}` 觸發條件。網站使用相對資源路徑與 hash 導覽，因此可在 `/hw9/` 下瀏覽，詳細頁重新整理也不會產生路徑 404。
-
-Sites 的 `.openai/hosting.json` 保留既有 project_id。修改後須建置、同步同一份來源至 Sites 的來源儲存庫，再由 Sites 工具儲存版本與部署；GitHub 的 push 不會自動更新 Sites。公開權限需由使用者授權，不可將私人部署誤寫成公開完成。
-
-## 作業說明用文字
-
-我的專案是「錯題研究室」，以自己的日文讀解與文法錯題建立可搜尋的筆記網站。我在 AGENTS.md 規定專案目的、手帳風格、檔案結構、錯題欄位、內容正確性要求與驗證流程。每篇筆記共用「原題 → 誤選原因 → 正解依據 → 選項比較 → 重點 → 自編練習」的格式。未來新增題目時，只要讓 AI 先讀規則，再加入結構化資料，就能延續相同的頁面與互動方式，再發布網站新版本。完整專案保存在 GitHub。
