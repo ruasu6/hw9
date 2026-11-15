@@ -2,7 +2,8 @@
 
 把自己的日文錯題整理成可以繼續擴充的學習網站。這份作業的核心是 **AGENTS.md + 結構化內容 + 共用頁面**：之後加入新題目時，AI 依同一套規則整理，就能自動產生索引、解析頁與複習內容。
 
-- 網頁成果：https://ruasu6.github.io/hw9/
+- 網頁成果：使用 Sites 發布；公開狀態以專案交付時確認的權限為準。
+- GitHub Pages 備用網址（尚未啟用）：https://ruasu6.github.io/hw9/
 - 專案規則：[AGENTS.md](AGENTS.md)
 - 新題格式：[docs/NOTE_TEMPLATE.json](docs/NOTE_TEMPLATE.json)
 - 錯題資料：[content/notes.json](content/notes.json)
@@ -33,7 +34,7 @@
 2. 提供試卷名稱／回次、完整題幹、四個選項、你的答案、正確答案與依據。
 3. 依 `docs/NOTE_TEMPLATE.json` 的結構，在 `content/notes.json` 新增一筆，ID 必須唯一。範本含第 36 題示例文字，新增時每個內容欄位都須換成新題的內容。
 4. 檢查內容並執行 `npm run check`、`npm run build`。
-5. 推送至 `main`，GitHub Actions 會驗證並重新發布網站。新增題目不需要修改 HTML 或 JavaScript。
+5. 推送至 `main`，再透過 Sites 工具發布新版本；新增題目不需要修改 HTML 或 JavaScript。若啟用 GitHub Pages，則可在 Actions 手動執行發布。
 
 可直接給 AI 的指令：
 
@@ -60,7 +61,8 @@ site/styles.css            共用視覺風格與響應式版面
 site/app.js                搜尋、動態解說、練習與本機進度
 scripts/check.mjs          資料驗證
 scripts/build.mjs          靜態網站建置
-.github/workflows/pages.yml 自動發布流程
+.github/workflows/pages.yml GitHub Pages 備用發布流程
+.openai/hosting.json       Sites 專案識別與靜態產出設定
 dist/                      建置結果（不提交）
 ```
 
@@ -79,8 +81,10 @@ npm run build
 
 ## GitHub Pages
 
-GitHub repository 的 Settings → Pages → Source 使用 **GitHub Actions**。`main` 更新後，`pages.yml` 會建置 `dist/` 並發布。網站使用相對資源路徑與 hash 導覽，因此可在 `/hw9/` 下瀏覽，詳細頁重新整理也不會產生路徑 404。
+目前 GitHub 連線可推送程式碼，但啟用 Pages 的 API 回傳 403，因此改用 Sites 發布。若要改用 GitHub Pages，由儲存庫管理者在 Settings → Pages → Source 選擇 **GitHub Actions**，再到 Actions 手動執行 `Deploy study notes to GitHub Pages`。若希望 main 更新時自動發布，可在 workflow 加回 `push: {branches: [main]}` 觸發條件。網站使用相對資源路徑與 hash 導覽，因此可在 `/hw9/` 下瀏覽，詳細頁重新整理也不會產生路徑 404。
+
+Sites 的 `.openai/hosting.json` 保留既有 project_id。修改後須建置、同步同一份來源至 Sites 的來源儲存庫，再由 Sites 工具儲存版本與部署；GitHub 的 push 不會自動更新 Sites。公開權限需由使用者授權，不可將私人部署誤寫成公開完成。
 
 ## 作業說明用文字
 
-我的專案是「錯題研究室」，以自己的日文讀解與文法錯題建立可搜尋的筆記網站。我在 AGENTS.md 規定專案目的、手帳風格、檔案結構、錯題欄位、內容正確性要求與驗證流程。每篇筆記共用「原題 → 誤選原因 → 正解依據 → 選項比較 → 重點 → 自編練習」的格式。未來新增題目時，只要讓 AI 先讀規則，再加入結構化資料，就能延續相同的頁面與互動方式，並經由 GitHub Actions 更新公開網站。
+我的專案是「錯題研究室」，以自己的日文讀解與文法錯題建立可搜尋的筆記網站。我在 AGENTS.md 規定專案目的、手帳風格、檔案結構、錯題欄位、內容正確性要求與驗證流程。每篇筆記共用「原題 → 誤選原因 → 正解依據 → 選項比較 → 重點 → 自編練習」的格式。未來新增題目時，只要讓 AI 先讀規則，再加入結構化資料，就能延續相同的頁面與互動方式，再發布網站新版本。完整專案保存在 GitHub。

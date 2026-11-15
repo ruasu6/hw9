@@ -121,7 +121,7 @@ function renderRules() {
   ].map(([step, title, description]) => el('div', {className: 'panel'}, el('span', {className: 'eyebrow'}, step), el('h2', {}, title), p(description)))));
   app.append(panel('↗', '給 AI 的協作入口', p('根目錄的 AGENTS.md 定義內容格式、檔案位置、視覺風格、驗證與發布方式。新增題目時，先讓 AI 讀這份規則。', 'rules-text'), el('div', {className: 'action-row'}, el('a', {href: 'AGENTS.md', className: 'button'}, '閱讀 AGENTS.md ↗'), el('a', {href: 'NOTE_TEMPLATE.json', className: 'button secondary', download: ''}, '下載錯題格式'), el('a', {href: 'https://github.com/ruasu6/hw9', className: 'button secondary', target: '_blank', rel: 'noopener'}, 'GitHub 原始碼 ↗'))));
   app.append(panel('＋', '下次可以這樣請 AI 幫忙', el('pre', {className: 'code'}, '請先讀取 AGENTS.md，依照 docs/NOTE_TEMPLATE.json，\n將以下日文錯題新增至 content/notes.json。\n\n來源與回次：……\n完整題目與選項：……\n我的答案：……\n正確答案與依據：……\n我的疑問：……\n\n不要改動既有題目。資訊不齊時標為 pending。\n完成後執行 npm run check 與 npm run build。')));
-  app.append(panel('✓', '這份專案對應的作業內容', el('ol', {className: 'rules-text'}, ...['小專案：用自己的日文錯題建立學習筆記庫。', 'AI 規則：AGENTS.md 清楚定義結構、格式、風格與工作流程。', '網頁成果：可搜尋的索引、錯題解說與自編練習。', '持續發布：GitHub Actions 在 main 更新時檢查並建置 GitHub Pages。'].map(text => el('li', {}, text)))));
+  app.append(panel('✓', '這份專案對應的作業內容', el('ol', {className: 'rules-text'}, ...['小專案：用自己的日文錯題建立學習筆記庫。', 'AI 規則：AGENTS.md 清楚定義結構、格式、風格與工作流程。', '網頁成果：可搜尋的索引、錯題解說與自編練習。', '版本與發布：完整程式碼放在 GitHub，網站由 Sites 發布；另提供 GitHub Pages 備用流程。'].map(text => el('li', {}, text)))));
   app.append(notice('目前完整題目為新提供圖片的第 36 題；其他題號取自對話預覽，仍待補原文。原題答案由使用者提供，自編例句與練習另外標示。'));
 }
 function route() {

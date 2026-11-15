@@ -14,7 +14,8 @@
 - `content/notes.json`：唯一錯題資料來源，陣列順序即預設顯示順序。
 - `docs/NOTE_TEMPLATE.json`：新增完整錯題的格式範本。
 - `scripts/check.mjs`：資料驗證；`scripts/build.mjs`：產生 `dist/`。
-- `.github/workflows/pages.yml`：檢查、建置並發布 GitHub Pages。
+- `.github/workflows/pages.yml`：GitHub Pages 備用手動發布流程，須先由管理者啟用 Pages。
+- `.openai/hosting.json`：Sites 專案 ID 與 dist 靜態目錄；更新時保留 ID。
 - `dist/` 為產出物，不手動編輯、不提交。
 - ID 使用小寫英文、數字與連字號，例如 `kyoto-weather-q36`。識別題目要用來源與題號，絕不可只用題號合併不同試卷。
 
@@ -44,4 +45,4 @@
 搜尋涵蓋題號、來源、標題、題幹與標籤；待補資料顯示明確提示，不顯示猜測答案。複習進度只存瀏覽器 localStorage，必須告知不會跨裝置同步；儲存不可用時仍可瀏覽。網站不能要求 API key 或登入。以 textContent 或 DOM API 呈現資料，禁止將內容插入未處理的 HTML。
 
 ## 驗證與發布
-新增內容以 schema、唯一 ID、答案範圍檢查為必要驗證。修改互動時檢查搜尋、切換、作答回饋、進度持久化與窄螢幕。若環境無瀏覽器驗證能力，明確記錄限制。GitHub Pages 使用 Actions 建置；push 前確認修改，發布後檢查 Actions 與公開網址。不可宣稱未成功的部署已完成。不要提交憑證、node_modules 或產出物。不要覆寫已有題目來做示範。
+新增內容以 schema、唯一 ID、答案範圍檢查為必要驗證。修改互動時檢查搜尋、切換、作答回饋、進度持久化與窄螢幕。若環境無瀏覽器驗證能力，明確記錄限制。目前由 Sites 發布，需同步相同 commit 至 Sites 來源、儲存版本並部署；GitHub 的 push 不會自動更新 Sites。GitHub Pages 可在管理者啟用後用 Actions 備用發布。push 前確認修改，發布後檢查部署與網址、訪客權限。不可宣稱未成功或私人部署已公開。不要提交憑證、node_modules 或產出物。不要覆寫已有題目來做示範。
