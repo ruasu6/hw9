@@ -29,7 +29,9 @@
 2. 提供試卷名稱／回次、完整題幹、四個選項、你的答案、正確答案與依據。
 3. 依 `docs/NOTE_TEMPLATE.json` 的結構，在 `content/notes.json` 新增一筆，ID 必須唯一。範本含第 36 題示例文字，新增時每個內容欄位都須換成新題的內容。
 4. 檢查內容並執行 `npm run check`、`npm run build`。
-5. 推送至 `main`，再透過 Sites 工具發布新版本；新增題目不需要修改 HTML 或 JavaScript。若啟用 GitHub Pages，則可在 Actions 手動執行發布。
+5. 推送至 `main`，GitHub Actions 會自動檢查、建置並發布最新版本至 GitHub Pages；新增題目不需要修改 HTML 或 JavaScript。
+
+網站更新以 Actions 最新一次執行的綠色勾勾為準。需要手動發布時，使用 Actions → Deploy study notes to GitHub Pages → Run workflow，分支選 `main`。不要用舊執行紀錄的 Re-run jobs 發布新內容，因為它會重跑舊 commit。Sites 的私人版本獨立維護，不會隨 GitHub Pages 自動更新。
 
 可直接給 AI 的指令：
 
@@ -56,7 +58,7 @@ site/styles.css            共用視覺風格與響應式版面
 site/app.js                搜尋、動態解說、練習與本機進度
 scripts/check.mjs          資料驗證
 scripts/build.mjs          靜態網站建置
-.github/workflows/pages.yml GitHub Pages 備用發布流程
+.github/workflows/pages.yml main 更新時自動發布 GitHub Pages
 .openai/hosting.json       Sites 專案識別與靜態產出設定
 dist/                      建置結果（不提交）
 ```
