@@ -1,0 +1,7 @@
+{
+  "name": "japanese-mistake-lab",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {"check": "node scripts/check.mjs", "build": "node scripts/check.mjs && node scripts/build.mjs"}
+}
